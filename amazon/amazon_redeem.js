@@ -41,8 +41,7 @@ try {
      console.log("redeemInputLine", redeemInputLine.value);
 
     var time_stamp = getDate();
-    var savedEmail = localStorage.getItem("email");
-    var encSavedEmail = encodeURIComponent(savedEmail).replace(/\./g, '%2E');
+
 
      chrome.runtime.sendMessage({
           type: 'gift_card_submitted',
@@ -53,7 +52,7 @@ try {
             gift_card_claim_message: "",
             prevous_balance: getCurrentBalance(),
             current_balance: '',
-            enc_email: encSavedEmail,
+         
           } 
 
         });

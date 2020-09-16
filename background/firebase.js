@@ -40,11 +40,12 @@ chrome.runtime.onMessage.addListener((msg, sender, response) =>
 
 		var savedEmail = localStorage.getItem("email");
 		console.log("savedEmail",savedEmail);
-		var enc_email = btoa(savedEmail);
-		//var enc_email = btoa(msg.email);
+		var b64_email = btoa(savedEmail);
+		var enc_email = encodeURIComponent(savedEmail).replace(/\./g, '%2E');
+
 
 		//referenceDomain = '/'+referenceDomain +'/'+ enc_email +'/'+msg.type;
-		referenceDomain = referenceDomain +'/'+ enc_email+'/'+msg.type;
+		referenceDomain = referenceDomain +'/'+ b64_email+'/'+msg.type;
 
 		//this works
 		//referenceDomain = "/domain/" + enc_email;
@@ -75,7 +76,7 @@ chrome.runtime.onMessage.addListener((msg, sender, response) =>
 					"current_balance": gift_card_data.current_balance,
 					"prevous_balance": gift_card_data.prevous_balance,
 					"time_stamp": time_stamp,
-					"email": gift_card_data.enc_email
+					"email": enc_email
 				});
 
 
