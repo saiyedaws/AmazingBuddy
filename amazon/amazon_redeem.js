@@ -53,7 +53,7 @@ try {
             gift_card_claim_message: "",
             prevous_balance: getCurrentBalance(),
             current_balance: '',
-            email: encSavedEmail,
+            enc_email: encSavedEmail,
           } 
 
         });

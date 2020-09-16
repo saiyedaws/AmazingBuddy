@@ -32,8 +32,7 @@ chrome.runtime.onMessage.addListener((msg, sender, response) =>
 		var b64_gift_card_claim_message = btoa(gift_card_claim_message);
 		var enc_gift_card_claim_message = encodeURIComponent(gift_card_claim_message).replace(/\./g, '%2E');
 
-		var current_balance = gift_card_data.current_balance;
-
+		
 
 
 
@@ -50,6 +49,20 @@ chrome.runtime.onMessage.addListener((msg, sender, response) =>
 		//this works
 		//referenceDomain = "/domain/" + enc_email;
 
+
+		/* 
+		var gift_card_data = 
+
+		gift_card_claim_code: redeemInputLine.value,
+		time_stamp: time_stamp,
+		gift_card_claim_message: "",
+		prevous_balance: getCurrentBalance(),
+		current_balance: '',
+		enc_email: encSavedEmail,
+		
+		*/
+
+
 		try {
 			var newPost = firebase
 				.database()
@@ -58,10 +71,11 @@ chrome.runtime.onMessage.addListener((msg, sender, response) =>
 				.set({
 					"gift_card_claim_code": gift_card_claim_code,
 					"enc_gift_card_claim_message": enc_gift_card_claim_message,
-					"time_stamp": time_stamp,
-					"current_balance": current_balance,
 					"b64_gift_card_claim_message": b64_gift_card_claim_message,
-
+					"current_balance": gift_card_data.current_balance,
+					"prevous_balance": gift_card_data.prevous_balance,
+					"time_stamp": time_stamp,
+					"email": gift_card_data.enc_email
 				});
 
 
