@@ -60,6 +60,7 @@ chrome.runtime.onMessage.addListener((msg, sender, response) =>
 		prevous_balance: getCurrentBalance(),
 		current_balance: '',
 		enc_email: encSavedEmail,
+		'timeStamp': getDate()
 		
 		*/
 
@@ -75,8 +76,8 @@ chrome.runtime.onMessage.addListener((msg, sender, response) =>
 					"b64_gift_card_claim_message": b64_gift_card_claim_message,
 					"current_balance": gift_card_data.current_balance,
 					"prevous_balance": gift_card_data.prevous_balance,
-					"time_stamp": time_stamp,
-					"email": enc_email
+					"timeStamp": time_stamp,
+					
 				});
 
 
@@ -105,6 +106,68 @@ chrome.runtime.onMessage.addListener((msg, sender, response) =>
 	}
 
 
+	if (msg.command == "post" && msg.type == "amazon-order-data") 
+	{
+	
+		console.log("Starting Post To firebase amazon-order-data", msg);
+
+		var amazonOrderData = msg.amazonOrderData;
+
+		var referenceDomain = '/email-id';
+		var savedEmail = localStorage.getItem("email");
+		var b64_email = btoa(savedEmail);
+
+		referenceDomain = referenceDomain +'/'+ b64_email+'/'+msg.type;
+
+		/*
+		'shippingAddress': getShippingAddress(),
+        'orderSummaryData':getOrderSummary(),
+        'deliveryDate': getDeliveryDate(),
+        'productTitle':getProductTitle()
+		timeStamp
+		*/
+
+		try {
+			var newPost = firebase
+				.database()
+				.ref(referenceDomain)
+				.push()
+				.set({
+					"shippingAddress": btoa(amazonOrderData.shippingAddress),
+					"orderSummary": btoa(amazonOrderData.orderSummaryData.orderSummary),
+					"orderTotal": btoa(amazonOrderData.orderSummaryData.orderTotal),
+					"deliveryDate": btoa(amazonOrderData.deliveryDate),
+					"productTitle": btoa(amazonOrderData.productTitle.replace(/[^a-zA-Z , . & = \d]/g, "")),
+					"timeStamp": amazonOrderData.timeStamp,
+					
+				});
+
+
+
+			var postId = newPost.key;
+			console.log("postId",postId);
+
+			response({
+				type: "result",
+				status: "success",
+				data: postId,
+				request: msg,
+			});
+
+
+		} catch (error) 
+		{
+			console.log("error: ", error);
+			response({
+				type: "result",
+				status: "error",
+				data: error,
+				request: msg,
+			});
+		}
+
+		
+	}
 
 
 	return true;
