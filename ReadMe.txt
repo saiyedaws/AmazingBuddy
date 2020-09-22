@@ -26,4 +26,4 @@ cd ChromeExtensions
 rm -rf AmazingBuddy
 git clone https://github.com/saiyedaws/AmazingBuddy
 
-echo done Updating/Downloading EA-Tracker
+echo done Updating/Downloading AmazingBuddy
