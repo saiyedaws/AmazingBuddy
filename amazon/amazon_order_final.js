@@ -206,3 +206,5 @@ function getProductTitle(){
 
     return productTitle;
 }
+
+

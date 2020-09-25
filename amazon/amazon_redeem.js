@@ -29,6 +29,7 @@ try {
 
         //console.log("giftCardData",giftCardData);
 
+        appendToLocalStorage(giftCardData);
         postDataToFireBase(giftCardData);
     }
     
@@ -130,3 +131,15 @@ function getCurrentBalance(){
     console.log('Submit To Firebase Response: ',response);
 
 };
+
+function appendToLocalStorage(newItem)
+{
+
+var oldItems = JSON.parse(localStorage.getItem('giftCardDataArray')) || [];
+
+ oldItems.push(newItem);
+
+localStorage.setItem('giftCardDataArray', JSON.stringify(oldItems));
+
+
+}
