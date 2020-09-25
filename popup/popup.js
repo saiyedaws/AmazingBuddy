@@ -8,6 +8,7 @@ function displayGiftCardData(){
 
 }
 
+/*
 
 document.getElementById('set_object_button').addEventListener('click', setGiftCardData);
 function setGiftCardData(){
@@ -31,4 +32,4 @@ function setGiftCardData(){
    localStorage.setItem('giftCardDataArray', JSON.stringify(oldItems));
 
 }
-
+*/
