@@ -23,3 +23,57 @@ var waitUntilElementExistsViaQuerySelectorAll = (selector, callback) =>
         setTimeout(() => waitUntilElementExistsViaQuerySelectorAll(selector, callback), 500);
 }
     
+
+
+function appendToLocalStorage(newItem, storageName) {
+
+
+    console.log('appendToLocalStorage');
+
+    chrome.storage.local.get(storageName, function (storage) 
+    {
+
+        console.log('storage',storage);
+
+        if (!Array.isArray(storage[storageName])) 
+        {
+            var oldItems = [];
+   
+            
+        } else 
+        {
+            var oldItems = storage[storageName];
+
+		}
+
+      
+
+        oldItems.push(newItem);
+        
+        console.log(storageName, oldItems);
+
+		chrome.storage.local.set({
+			[storageName]: oldItems,
+        });
+        
+
+	});
+}
+
+function getFromLocalStorage(storageName){
+    
+ 
+    return new Promise((resolve)=>
+    {
+        chrome.storage.local.get(storageName, function(storage) 
+        {
+            console.log('storage.storageName',storage[storageName]);
+    
+            resolve(storage[storageName]);
+        });
+
+
+    });
+
+ 
+}

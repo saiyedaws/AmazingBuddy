@@ -21,16 +21,9 @@
       {
         "matches": ["https://www.amazon.ca/gc/redeem?*", "https://www.amazon.ca/portal-migration/gc/*"],
         "js": ["libraries/jquery.min.js","libraries/custom.js", "amazon/amazon_redeem.js"],
-        "run_at": "document_end"
-      },
-      {
-        "matches": ["*://amazon.ca/gp/buy/*", "*://*.amazon.ca/gp/buy/*","https://www.amazon.ca/gp/buy/spc/handlers/*"],
-        
-        "js": ["libraries/jquery.min.js","libraries/custom.js", "amazon/amazon_order_final.js"],
-        "css": ["amazon/amazon_order_final.css"],
+        "css": ["amazon/amazon_redeem.css"],
         "run_at": "document_end"
       }
-    
     
 
 

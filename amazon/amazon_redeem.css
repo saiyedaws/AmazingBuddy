@@ -1,0 +1,17 @@
+
+
+  #custom_redeem_button {
+    font-family: OpenSans;
+    color: #FFFFFF;
+    background-color: #4381d3;
+    border: 1px solid #0323b1;
+    border-radius: 5px;
+    box-shadow: 0px 5px 0px #03000a;
+    position: relative;
+    top: 0px;
+    transition: all ease 0.3s;
+  }
+  #custom_redeem_button:active {
+    box-shadow: 0 3px 0 #03000a;
+    top: 3px;
+  }

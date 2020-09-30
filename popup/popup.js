@@ -1,4 +1,4 @@
-document.getElementById('display_gift_card_button').addEventListener('click', displayGiftCardData);
+document.getElementById('display_gift_card_button').addEventListener('click', viewOrders);
 
 function displayGiftCardData(){
 
@@ -8,28 +8,14 @@ function displayGiftCardData(){
 
 }
 
-/*
+async function viewOrders(){
 
-document.getElementById('set_object_button').addEventListener('click', setGiftCardData);
-function setGiftCardData(){
-
-    
-    var oldItems = JSON.parse(localStorage.getItem('giftCardDataArray')) || [];
-
-
-    var newItem = 
-    {
-      gift_card_claim_code: 'redeemInputLine.value',
-      time_stamp: 'time_stamp',
-      gift_card_claim_message: "",
-      prevous_balance: 'getCurrentBalance',
-      current_balance: '',
    
-    } 
 
-    oldItems.push(newItem);
-   
-   localStorage.setItem('giftCardDataArray', JSON.stringify(oldItems));
 
-}
-*/
+  var redemptionDetails = await getFromLocalStorage('redemptionDetails');
+  console.log("redemptionDetails",redemptionDetails);
+  
+     
+  
+  }
