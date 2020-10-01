@@ -85,7 +85,7 @@ function styleTextArea(){
 $('#scrollabletextbox').highlightWithinTextarea({
     highlight: [
         {
-            highlight: 'invalid',
+            highlight: 'GC claim code is invalid',
             className: 'red'
         },
         {
