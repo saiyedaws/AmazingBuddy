@@ -100,7 +100,10 @@ $('#scrollabletextbox').highlightWithinTextarea({
             highlight: /"current_balance"\s*:\s*"(.+?)"/gi,
             className: 'green'
         },
-        
+        {
+            highlight: 'has been added to your Gift Card Balance',
+            className: 'green'
+        },
         
         
     ]
