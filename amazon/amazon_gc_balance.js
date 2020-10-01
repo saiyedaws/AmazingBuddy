@@ -38,5 +38,6 @@ function getSafeGiftCardLimit(){
 
     var usableGcLimit = giftCardBalanceDecimal*0.45;
 
-    return usableGcLimit;
+    usableGcLimit = usableGcLimit.toFixed(2);
+    return n;
 }
