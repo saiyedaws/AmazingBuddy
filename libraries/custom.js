@@ -30,34 +30,39 @@ function appendToLocalStorage(newItem, storageName) {
 
     console.log('appendToLocalStorage');
 
-    chrome.storage.local.get(storageName, function (storage) 
-    {
-
-        console.log('storage',storage);
-
-        if (!Array.isArray(storage[storageName])) 
+    return new Promise((resolve)=>{
+        chrome.storage.local.get(storageName, function (storage) 
         {
-            var oldItems = [];
-   
+    
             
-        } else 
-        {
-            var oldItems = storage[storageName];
-
-		}
-
-      
-
-        oldItems.push(newItem);
-        
-        console.log(storageName, oldItems);
-
-		chrome.storage.local.set({
-			[storageName]: oldItems,
+    
+            if (!Array.isArray(storage[storageName])) 
+            {
+                var oldItems = [];
+       
+                
+            } else 
+            {
+                var oldItems = storage[storageName];
+    
+            }
+    
+          
+    
+            oldItems.push(newItem);
+            
+            console.log(storageName, oldItems);
+    
+            chrome.storage.local.set({
+                [storageName]: oldItems,
+            });
+            
+    
+            resolve();
         });
-        
+    });
 
-	});
+
 }
 
 function getFromLocalStorage(storageName){

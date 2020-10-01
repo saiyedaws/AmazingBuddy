@@ -45,11 +45,12 @@ function appendRedeemGiftCardButton(){
 
 }
 
-function checkClaimCodeMessage()
+async function checkClaimCodeMessage()
 {
     var claimCodeMessage = getClaimCodeMessage();
 
-    if(claimCodeMessage){
+    if(claimCodeMessage)
+    {
         var currentBalance = getCurrentBalance();
 
         var giftCardData =
@@ -61,7 +62,16 @@ function checkClaimCodeMessage()
        
         } 
     
-        appendToLocalStorage(giftCardData, 'redemptionDetails');
+        await appendToLocalStorage(giftCardData, 'redemptionDetails');
+
+        //on finding new claimcode message, create new scrollabletextarea
+        try {
+            createScrollableTextBox();
+            
+        } catch (error) {
+            console.log(error);
+        }
+       
     }
   
 }
