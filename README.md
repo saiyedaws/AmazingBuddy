@@ -1,4 +1,4 @@
-# AmazingBuddy
+# AmazingBuddy - COPY AND PASTE ENTIRE README INTO GITBASH
 
 echo Download Git Bash at: https://git-scm.com/downloads
 
@@ -14,7 +14,7 @@ echo ubuntu  | sudo -S -k apt-get install chromium-browser -y
 echo copy and paste into terminal or into gitbash
 echo Official Project at:  https://github.com/saiyedaws/EA-Tracker
 
-echo installing orderfinder4 begins
+echo installing AmazingBuddy begins
 
 echo ubuntu  | sudo -S -k apt install git -y
 echo Updating Chrome Extensions
@@ -26,4 +26,4 @@ cd ChromeExtensions
 rm -rf AmazingBuddy
 git clone https://github.com/saiyedaws/AmazingBuddy
 
-echo done Updating/Downloading EA-Tracker
+echo done Updating/Downloading AmazingBuddy
