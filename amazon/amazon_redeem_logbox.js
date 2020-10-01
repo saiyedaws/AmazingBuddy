@@ -102,7 +102,7 @@ $('#scrollabletextbox').highlightWithinTextarea({
         },
         {
             highlight: 'has been added to your Gift Card Balance',
-            className: 'light_green'
+            className: 'green'
         },
         
         
