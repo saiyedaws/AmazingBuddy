@@ -43,7 +43,12 @@ async function createScrollableTextBox(){
 
     
 
-    addRedemptionDetailsToTextArea();
+    try {
+        addRedemptionDetailsToTextArea();
+    } catch (error) {
+        console.log(error);
+    }
+  
    
     
 }
