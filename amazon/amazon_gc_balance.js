@@ -1,13 +1,20 @@
+try {
+    addUsableGiftCardBalance();
+} catch (error) {
+    console.log(error);
+}
+
+
 function addUsableGiftCardBalance(){
 
-    var usableBalance = "0.00";
+    var usableBalance = getSafeGiftCardLimit();
 
     var element = document.querySelector("#gc-balance-table .gc-balance-left-section h2");
 
 
     var h2Element = document.createElement("h2");
     h2Element.className = "a-text-bold a-text-normal";
-    h2Element.innerText = "Gift Card Usage Limit: ";
+    h2Element.innerText = "Safe Gift Card Usage Limit: ";
 
     var spanElement = document.createElement("span");
     spanElement.id = "usable_balance_value";
@@ -23,8 +30,13 @@ function addUsableGiftCardBalance(){
 
 }
 
-function calculateSafeGiftCardLimit(){
+function getSafeGiftCardLimit(){
 
     var giftCardBalance = document.querySelector("#gc-ui-balance-gc-balance-value").innerText;
+   
+    var giftCardBalanceDecimal = giftCardBalance.match(/\d+\.?\d*/gi)[0];
 
+    var usableGcLimit = giftCardBalanceDecimal*0.45;
+
+    return usableGcLimit;
 }
