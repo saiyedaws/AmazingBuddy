@@ -37,14 +37,22 @@ function getSafeGiftCardLimit(){
     var giftCardBalanceDecimal = giftCardBalance.match(/\d+\.?\d*/gi)[0];
     giftCardBalanceDecimal = Number(giftCardBalanceDecimal);
 
+    console.log("giftCardBalanceDecimal",giftCardBalanceDecimal);
+
     var pendingTotal = getPendingTotal();
     pendingTotal = Number(pendingTotal);
 
+    console.log("pendingTotal",pendingTotal);
+
     var giftCardPlusPending = giftCardBalanceDecimal + pendingTotal;
+
+    console.log("giftCardPlusPending",giftCardPlusPending);
+
 
     var usableGcLimit = giftCardPlusPending*0.45;
     usableGcLimit = usableGcLimit.toFixed(2);
 
+    console.log("usableGcLimit",usableGcLimit);
     
 
     return usableGcLimit;
