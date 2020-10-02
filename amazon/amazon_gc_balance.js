@@ -54,28 +54,32 @@ function getPendingTotal()
 
     var trElements = document.querySelectorAll("tr");
    
-  
-    for (let index = 0; index < trElements.length; index++) {
-        var trElement = trElements[index];
-
-        if(trElement.textContent.includes('Pending'))
-        {
-            // something
-            console.log(trElement.innerText);
-
-            var price = trElement.innerText.match(/\d{1,3}[.](\d{1,2})/gi)[0];
-            price = Number(price);
-
-            console.log("price",price);
-
-            totalPendingAmount = totalPendingAmount+price;
-           
-
-            console.log("totalPendingAmount",totalPendingAmount);
-
+    if(trElements)
+    {
+        for (let index = 0; index < trElements.length; index++) {
+            var trElement = trElements[index];
+    
+            if(trElement.textContent.includes('Pending'))
+            {
+                // something
+                console.log(trElement.innerText);
+    
+                var price = trElement.innerText.match(/\d{1,3}[.](\d{1,2})/gi)[0];
+                price = Number(price);
+    
+                console.log("price",price);
+    
+                totalPendingAmount = totalPendingAmount+price;
+               
+    
+                console.log("totalPendingAmount",totalPendingAmount);
+    
+            }
+            
         }
-        
     }
+  
+  
 
 
     totalPendingAmount = totalPendingAmount.toFixed(2);
