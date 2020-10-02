@@ -104,6 +104,12 @@ $('#scrollabletextbox').highlightWithinTextarea({
             highlight: 'has been added to your Gift Card Balance',
             className: 'green'
         },
+        {
+            highlight: 'Already redeemed to another account',
+            className: 'orange'
+        },
+
+       
         
         
     ]
