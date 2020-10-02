@@ -44,7 +44,7 @@ function getSafeGiftCardLimit(){
 
     console.log("pendingTotal",pendingTotal);
 
-    var giftCardPlusPending = giftCardBalanceDecimal + pendingTotal;
+    var giftCardPlusPending = giftCardBalanceDecimal - pendingTotal;
 
     console.log("giftCardPlusPending",giftCardPlusPending);
 
