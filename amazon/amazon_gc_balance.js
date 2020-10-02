@@ -35,7 +35,10 @@ function getSafeGiftCardLimit(){
     var giftCardBalance = document.querySelector("#gc-ui-balance-gc-balance-value").innerText;
    
     var giftCardBalanceDecimal = giftCardBalance.match(/\d+\.?\d*/gi)[0];
+    giftCardBalanceDecimal = Number(giftCardBalanceDecimal);
+
     var pendingTotal = getPendingTotal();
+    pendingTotal = Number(pendingTotal);
 
     var giftCardPlusPending = giftCardBalanceDecimal + pendingTotal;
 
