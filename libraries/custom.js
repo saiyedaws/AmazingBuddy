@@ -65,6 +65,75 @@ function appendToLocalStorage(newItem, storageName) {
 
 }
 
+
+
+function appendArrayToLocalStorage(newItem, storageName) {
+
+
+    console.log('appendArrayToLocalStorage');
+
+    return new Promise((resolve)=>{
+        chrome.storage.local.get(storageName, function (storage) 
+        {
+    
+            
+    
+            if (!Array.isArray(storage[storageName])) 
+            {
+                var oldItems = [];
+       
+                
+            } else 
+            {
+                var oldItems = storage[storageName];
+    
+            }
+    
+          
+    
+            oldItems.push(...newItem);
+            
+            console.log(storageName, oldItems);
+    
+            chrome.storage.local.set({
+                [storageName]: oldItems,
+            });
+            
+    
+            resolve();
+        });
+    });
+
+
+}
+
+
+function clearLocalStorage(storageName) {
+
+
+    console.log('clearLocalStorage');
+
+    return new Promise((resolve)=>{
+        chrome.storage.local.get(storageName, function (storage) 
+        {
+    
+            
+         var oldItems = [];
+       
+         
+    
+            chrome.storage.local.set({
+                [storageName]: oldItems,
+            });
+            
+    
+            resolve();
+        });
+    });
+
+
+}
+
 function getFromLocalStorage(storageName){
     
  

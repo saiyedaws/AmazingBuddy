@@ -58,7 +58,8 @@ async function checkClaimCodeMessage()
     
           giftCardClaimMessage: claimCodeMessage,
           current_balance: currentBalance,
-          timeStamp: getDate(),
+         // timeStamp: getDate(),
+          timeStamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
        
         } 
     
@@ -87,7 +88,8 @@ function getRedeemInputData2()
     {
       giftCardClaimCode: redeemInputLine.value,
       previousBlanace: getCurrentBalance(),
-      timeStamp: getDate(),
+      //timeStamp: getDate(),
+      timeStamp: moment().format('MMMM Do YYYY, h:mm:ss a'),
     
    
     } 
