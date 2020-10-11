@@ -119,3 +119,121 @@ $('#scrollabletextbox').highlightWithinTextarea({
 
 
 createScrollableTextBox();
+
+
+
+async function createClaimMessageTotalBox(claimCodeType,claimCodeMessage)
+{
+    var innerHTMLMessage = '';
+    var totalMessageCount = '';
+
+    var element = document.getElementById("gc-redemption-form");
+    var textArea = document.createElement("div");
+    textArea.id = claimCodeType+"-claim-message-box";
+    textArea.className = claimCodeType +' claim-message-box';
+    element.append(textArea);
+
+
+
+    var today = 1;
+    var week = 7;
+    var month = 30;
+    var year = 365;
+
+  
+
+    totalMessageCount = await getTotalErrorMessage(claimCodeMessage,today); 
+    innerHTMLMessage += '<span id="'+claimCodeType+'Text">'+"Total "+claimCodeType+" today: </span>" + '<span style="color:#ff0000;font-weight: bold;">'+totalMessageCount+'</span>';
+    innerHTMLMessage += "<br>";
+    console.log(innerHTMLMessage);
+
+    totalMessageCount = await getTotalErrorMessage(claimCodeMessage,week); 
+    innerHTMLMessage += "Total "+claimCodeType+" week: " + totalMessageCount;
+    innerHTMLMessage += "<br>";
+    console.log(innerHTMLMessage);
+
+    totalMessageCount = await getTotalErrorMessage(claimCodeMessage,month); 
+    innerHTMLMessage += "Total "+claimCodeType+" month: " + totalMessageCount;
+    innerHTMLMessage += "<br>";
+    console.log(innerHTMLMessage);
+
+    totalMessageCount = await getTotalErrorMessage(claimCodeMessage,year); 
+    innerHTMLMessage += "Total "+claimCodeType+" year: " + totalMessageCount;
+    innerHTMLMessage += "<br>";
+    console.log(innerHTMLMessage);
+
+
+  document.getElementById(claimCodeType+'-claim-message-box').innerHTML = innerHTMLMessage;
+
+
+
+}
+
+
+createClaimMessageTotalBox("invalid","GC claim code is invalid");
+createClaimMessageTotalBox("already-redeemed","Already redeemed to another account");
+createClaimMessageTotalBox("valid","added to your Gift Card Balance");
+
+
+
+
+
+async function getTotalErrorMessage(errorMessage, daysToCheck) 
+{
+ 
+  var totalErrorMessage = 0;
+
+  var redemptionDetails = await getFromLocalStorage("redemptionDetails");
+ 
+  for (let index = 0; index < redemptionDetails.length; index++) 
+  {
+    var redemptionDetail = redemptionDetails[index];
+
+    if (redemptionDetail.giftCardClaimMessage){
+      if (redemptionDetail.giftCardClaimMessage.includes(errorMessage)) 
+      {
+       
+        var timeStamp = redemptionDetail.timeStamp;
+        var timeStampMoment = moment(timeStamp, 'MMMM Do YYYY, h:mm:ss a');
+                //console.log("timeStampMoment: ",timeStampMoment);
+        var checkIsWithinCustomDays = await isWithinCustomDays(timeStampMoment, daysToCheck);
+        // console.log("is "+timeStamp+" today?: "+ await isWithinCustomDays(timeStampMoment, daysToCheck));
+
+        if(checkIsWithinCustomDays)
+        {
+          totalErrorMessage++;
+        }
+
+
+     
+
+       
+        
+       
+      }
+
+    }
+    
+  }
+
+
+
+  console.log(errorMessage+" total Within "+daysToCheck+" days: ",totalErrorMessage);
+
+  return totalErrorMessage;
+
+}
+
+function isWithinCustomDays(momentDate, days){
+    return new Promise((resolve)=>{
+  
+      var REFERENCE = moment(); // fixed just for testing, use moment();
+      var customDays = REFERENCE.clone().subtract(days, 'days').startOf('day');
+  
+      resolve(momentDate.isAfter(customDays, 'd'));
+    });
+  }
+  
+  
+  
+  

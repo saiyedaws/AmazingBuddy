@@ -14,9 +14,9 @@ var waitUntilElementExistsAmazonBuddy = (selector, callback) =>
 var waitUntilElementExistsViaQuerySelectorAll = (selector, callback) => 
 {
         var el = document.querySelectorAll(selector)[0];
-        console.log("Checking - amazonbuddy");
+        console.log("Checking for: "+selector);
         if (el){
-            console.log("Found - amazonbuddy");
+            console.log("Found: "+selector);
             return callback(el);
         }
         
@@ -151,3 +151,5 @@ function getFromLocalStorage(storageName){
 
  
 }
+
+

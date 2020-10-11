@@ -1,6 +1,36 @@
 #scrollabletextbox {
-    height:500px;
-    width:1000px;
+  height: 500px;
+  width: 1000px;
+}
 
-   
-    }
+.claim-message-box {
+  width: 225px;
+  height: 100px;
+  display: inline-block;
+
+  margin: 2.5px;
+  
+}
+
+.invalid{
+  border: 2px solid rgb(236, 115, 115);
+}
+
+#invalidText{
+  color : rgb(236, 115, 115);
+}
+
+.already-redeemed{
+  border: 2px solid rgb(243, 132, 27);
+}
+#already-redeemedText{
+  color :rgb(243, 132, 27);
+}
+
+.valid{
+  border: 2px solid rgb(32, 161, 6);
+}
+#validText{
+  color: rgb(32, 161, 6);
+}
+

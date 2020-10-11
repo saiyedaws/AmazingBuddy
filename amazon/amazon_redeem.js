@@ -11,8 +11,10 @@ try {
 }
 
 function appendRedeemGiftCardButton(){
-    //var element = document.getElementById("gc-redemption-form-heading");
+    
+    /*
     document.getElementById("gc-redemption-apply").style.display = "none";
+
 
 
     var element = document.getElementById("gc-redemption-input-parent");
@@ -22,9 +24,25 @@ function appendRedeemGiftCardButton(){
     button.id = "custom_redeem_button";
     button.innerHTML = "Redeem & Save GiftCard";
     button.type = 'button';
+    button.className = 'a-button a-button-span12 a-button-primary';
 
-    element.nextElementSibling.append(button);
 
+    element.parentElement.append(button);
+
+    */
+
+    document.getElementById("gc-redemption-apply").querySelector('.a-button-inner').style.display = "none";
+   var element = document.getElementById("gc-redemption-apply");
+    
+
+   var button = document.createElement("button");
+   button.id = "custom_redeem_button";
+   button.innerHTML = "Redeem & Save GiftCard";
+   button.type = 'button';
+   button.className = 'a-button a-button-span12 a-button-primary a-button-inner a-size-medium';
+
+
+   element.append(button);
 
     button.onclick = function () 
     {
