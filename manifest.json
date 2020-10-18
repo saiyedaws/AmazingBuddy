@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Amazon Buddy",
-    "version": "2.4",
+    "version": "2.5",
     "permissions": [
       "<all_urls>",
       "storage", "clipboardWrite", "clipboardRead", "storage", "contextMenus", "tabs", "activeTab", "http://*/", "https://*/", "identity" 
@@ -20,7 +20,7 @@
   
       {
         "matches": ["https://www.amazon.ca/gc/redeem*", "https://www.amazon.ca/portal-migration/gc/*"],
-        "js": ["libraries/jquery.min.js","libraries/moment-with-locales.js", "libraries/highlight-within-textarea-master/jquery.highlight-within-textarea.js","libraries/custom.js", "amazon/amazon_redeem.js", "amazon/amazon_redeem_logbox.js"],
+        "js": ["libraries/html2canvas.js","libraries/jquery.min.js","libraries/moment-with-locales.js", "libraries/highlight-within-textarea-master/jquery.highlight-within-textarea.js","libraries/custom.js", "amazon/amazon_redeem.js", "amazon/amazon_redeem_logbox.js","amazon/amazon_screen_shot.js"],
         "css": ["amazon/amazon_redeem.css","libraries/highlight-within-textarea-master/jquery.highlight-within-textarea.css","amazon/amazon_redeem_logbox.css"],
         "run_at": "document_end"
       },
