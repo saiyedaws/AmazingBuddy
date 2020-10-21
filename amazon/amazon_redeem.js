@@ -1,4 +1,10 @@
 try {
+    try {
+        document.body.style.zoom = "50%";
+    } catch (error) {
+        console.log(error);
+    }
+
     appendRedeemGiftCardButton();
 } catch (error) {
     console.log(error);
