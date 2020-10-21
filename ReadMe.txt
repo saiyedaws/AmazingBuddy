@@ -12,7 +12,7 @@ echo ubuntu  | sudo -S -k apt-get install chromium-browser -y
 
 
 echo copy and paste into terminal or into gitbash
-echo Official Project at:  https://github.com/saiyedaws/EA-Tracker
+
 
 echo installing AmazingBuddy begins
 

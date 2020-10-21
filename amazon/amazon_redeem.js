@@ -43,7 +43,8 @@ function appendRedeemGiftCardButton(){
 
    var button = document.createElement("button");
    button.id = "custom_redeem_button";
-   button.innerHTML = "Redeem & Save GiftCard";
+   button.innerHTML = "Apply to your balance";
+
    button.type = 'button';
    button.className = 'a-button a-button-span12 a-button-primary a-button-inner a-size-medium';
 
