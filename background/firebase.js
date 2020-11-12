@@ -170,5 +170,77 @@ chrome.runtime.onMessage.addListener((msg, sender, response) =>
 	}
 
 
+	if (msg.command == "post" && msg.type == "amazon_balance_data") 
+	{
+
+		 var gift_card_balance_information = msg.data;
+		 
+		console.log("Starting Post To firebase amazon_balance_data", msg);
+
+
+		var referenceDomain = `/amazon_accounts/${gift_card_balance_information.user_id}`;
+
+
+
+		try {
+			var newPost = firebase
+				.database()
+				.ref(referenceDomain)
+				//.push()
+				
+				.set({
+					"gift_card_balance": gift_card_balance_information.gift_card_balance,
+					"usable_gift_card_balance": gift_card_balance_information.usable_gift_card_balance,
+					"total_pending_value": gift_card_balance_information.total_pending_value,
+					"total_pending_orders": gift_card_balance_information.total_pending_orders,
+					"time_stamp": gift_card_balance_information.time_stamp,
+					"user_id": gift_card_balance_information.user_id,
+					"teamviewer_id": gift_card_balance_information.teamviewer_id,
+					
+				});
+
+
+
+			var postId = newPost.key;
+			console.log("postId",postId);
+
+			response({
+				type: "result",
+				status: "success",
+				data: postId,
+				request: msg,
+			});
+
+
+		} catch (error) 
+		{
+			console.log("error: ", error);
+			response({
+				type: "result",
+				status: "error",
+				data: error,
+				request: msg,
+			});
+		}
+
+		
+	}
+
+	if(msg.command == "get" && msg.type == "amazon_accounts")
+	{
+
+		
+		firebase.database().ref('/amazon_accounts/').once('value').then(function(snapshot) 
+		{
+			console.log("snapshot",snapshot);
+			console.log("snapshot Val",snapshot.val());
+			response({
+				type: "done",
+			});
+			// ...
+
+		});
+	}
+
 	return true;
 });

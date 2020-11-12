@@ -37,23 +37,24 @@ function getSafeGiftCardLimit(){
     var giftCardBalanceDecimal = giftCardBalance.match(/\d+\.?\d*/gi)[0];
     giftCardBalanceDecimal = Number(giftCardBalanceDecimal);
 
-    console.log("giftCardBalanceDecimal",giftCardBalanceDecimal);
+    //console.log("giftCardBalanceDecimal",giftCardBalanceDecimal);
 
     var pendingTotal = getPendingTotal();
     pendingTotal = Number(pendingTotal);
 
-    console.log("pendingTotal",pendingTotal);
+   // console.log("pendingTotal",pendingTotal);
 
     var giftCardPlusPending = giftCardBalanceDecimal - pendingTotal;
 
-    console.log("giftCardPlusPending",giftCardPlusPending);
+    //console.log("giftCardPlusPending",giftCardPlusPending);
 
 
     var usableGcLimit = giftCardPlusPending*0.45;
     usableGcLimit = usableGcLimit.toFixed(2);
 
-    console.log("usableGcLimit",usableGcLimit);
-    
+    //console.log("usableGcLimit",usableGcLimit);
+    usableGcLimit =  Number(usableGcLimit);
+
 
     return usableGcLimit;
 }
@@ -78,12 +79,12 @@ function getPendingTotal()
                 var price = trElement.innerText.match(/\d{1,3}[.](\d{1,2})/gi)[0];
                 price = Number(price);
     
-                console.log("price",price);
+                //console.log("price",price);
     
                 totalPendingAmount = totalPendingAmount+price;
                
     
-                console.log("totalPendingAmount",totalPendingAmount);
+                //console.log("totalPendingAmount",totalPendingAmount);
     
             }
             
@@ -94,7 +95,8 @@ function getPendingTotal()
 
 
     totalPendingAmount = totalPendingAmount.toFixed(2);
-    console.log("totalPendingAmount",totalPendingAmount);
+    //console.log("totalPendingAmount",totalPendingAmount);
 
+    //totalPendingAmount = Number(usableGcLimit);
     return totalPendingAmount;
 }
