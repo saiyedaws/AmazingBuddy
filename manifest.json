@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Amazon Buddy",
-    "version": "3.0",
+    "version": "3.1",
     "permissions": [
       "<all_urls>",
       "storage", "clipboardWrite", "clipboardRead", "storage", "contextMenus", "tabs", "activeTab", "http://*/", "https://*/", "identity" 
@@ -30,9 +30,10 @@
       },
       {
         "matches": [
-          "https://www.amazon.ca/gc/balance/*",
+          "https://www.amazon.ca/gc/balance*",
           "https://www.amazon.ca/gc/balance/ref=gc_balance_legacy_to_newgcf?_encoding=UTF8&ref_=ya_d_c_gc",
           "file:///C:/Users/Main/Documents/HTML/ref=gc_balance_legacy_to_newgcf.htm"
+          
         ],
         "js": [
           "libraries/custom.js",
