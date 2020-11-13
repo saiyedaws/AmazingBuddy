@@ -51,6 +51,8 @@ function addEventListener(){
   document.querySelector('#teamviewer_id_button').addEventListener('click', save_teamviewer_id);
   document.querySelector("#user_id_button").addEventListener("click",save_user_id);
 
+  document.querySelector('#chrome_settings').addEventListener('click', open_chrome_settings);
+
 }addEventListener();
 
 function save_teamviewer_id()
@@ -84,3 +86,11 @@ function restore_settings(){
 
 
 }restore_settings();
+
+
+function open_chrome_settings()
+{
+    copyToClipboard('https://www.amazon.ca');
+
+    bg_port.postMessage({ type: "open_chrome_settings"});
+}

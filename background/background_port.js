@@ -1,10 +1,15 @@
+var options_port;
+
+
 chrome.extension.onConnect.addListener((port) => {
   // Checks the connection source
-  if (port.name === "option") {
-    popup_port = port;
+  if (port.name === "option") 
+  {
+    options_port = port;
 
     // Begins to listen messages from popup
-    popup_port.onMessage.addListener((request) => {
+    options_port.onMessage.addListener((request) => 
+    {
       if (
         request.type === "from_option" &&
         request.command === "copy_to_clipboard"
@@ -17,8 +22,24 @@ chrome.extension.onConnect.addListener((port) => {
         document.execCommand("Copy");
         input.remove();
       }
+
+
+
+
+      if(request.type === 'open_chrome_settings') 
+      {
+        chrome.tabs.create({ url: 'chrome://settings/content/javascript', active: false }, function (tab) {
+
+        });
+
+        chrome.tabs.create({ url: 'chrome://settings/content/images', active: false }, function (tab) {
+
+        });
+
+      }
+
     });
 
-    popup_port.onDisconnect.addListener(() => (popup_port = null));
+    options_port.onDisconnect.addListener(() => (options_port = null));
   }
 });
