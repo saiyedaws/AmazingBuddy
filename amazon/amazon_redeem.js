@@ -1,6 +1,7 @@
 try {
     try {
         document.body.style.zoom = "50%";
+        
         document.getElementById('gc-current-balance').style.zoom = "200%";
     } catch (error) {
         console.log(error);
