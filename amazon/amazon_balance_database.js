@@ -9,9 +9,10 @@ try
     console.log(error);
 }
 
-async function main(){
+async function main()
+{
     var gift_card_balance_information = await fetch_gift_card_balance_information();
-    await postDataToFireBase(gift_card_balance_information);
+    await postDataToFireBase(gift_card_balance_information, "amazon_balance_data");
    // await getDataFromFireBase();
 }
 
@@ -37,7 +38,8 @@ async function fetch_gift_card_balance_information()
         total_pending_orders:total_pending_orders,
         time_stamp:time_stamp,
         user_id: user_id,
-        teamviewer_id: teamviewer_id
+        teamviewer_id: teamviewer_id,
+        is_account_used:"no"
         
 
     }
@@ -129,7 +131,7 @@ function get_total_pending_orders()
 }
 
 
-function postDataToFireBase(data)
+function postDataToFireBase(data, messageType)
 {
    return new Promise((resolve, reject) => {
     console.log("Beginning to send data to firebase", data);
@@ -137,7 +139,7 @@ function postDataToFireBase(data)
 
     chrome.runtime.sendMessage({
         command: "post",
-        type: "amazon_balance_data",
+        type: messageType,
         data: data
  
  

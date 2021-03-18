@@ -196,6 +196,60 @@ chrome.runtime.onMessage.addListener((msg, sender, response) =>
 					"time_stamp": gift_card_balance_information.time_stamp,
 					"user_id": gift_card_balance_information.user_id,
 					"teamviewer_id": gift_card_balance_information.teamviewer_id,
+					"is_account_used":gift_card_balance_information.is_account_used
+					
+				});
+
+
+
+			var postId = newPost.key;
+			console.log("postId",postId);
+
+			response({
+				type: "result",
+				status: "success",
+				data: postId,
+				request: msg,
+			});
+
+
+		} catch (error) 
+		{
+			console.log("error: ", error);
+			response({
+				type: "result",
+				status: "error",
+				data: error,
+				request: msg,
+			});
+		}
+
+		
+	}
+
+	if (msg.command == "post" && msg.type == "amazon_balance_data_update_after_order") 
+	{
+
+		 var gift_card_balance_information = msg.data;
+		 
+		console.log("Starting Post To firebase amazon_balance_data_update_after_order", msg);
+
+
+		var referenceDomain = `/amazon_accounts/${gift_card_balance_information.user_id}`;
+
+
+
+		try {
+			var newPost = firebase
+				.database()
+				.ref(referenceDomain)
+				//.push()
+				
+				.update({
+					//"time_stamp": gift_card_balance_information.time_stamp,
+					//"user_id": gift_card_balance_information.user_id,
+					//"teamviewer_id": gift_card_balance_information.teamviewer_id,
+					"is_account_used":gift_card_balance_information.is_account_used
 					
 				});
 

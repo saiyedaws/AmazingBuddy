@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Amazon Buddy",
-    "version": "3.4",
+    "version": "3.9",
     "permissions": [
       "<all_urls>",
       "storage", "clipboardWrite", "clipboardRead", "storage", "contextMenus", "tabs", "activeTab", "http://*/", "https://*/", "identity" 
@@ -40,6 +40,19 @@
           "libraries/moment-with-locales.js",
           "amazon/amazon_gc_balance.js",
           "amazon/amazon_balance_database.js"
+        ],
+        "run_at": "document_end"
+      },  
+      {
+        "matches": [
+          "https://www.amazon.ca/gp/buy/thankyou/*"
+          
+        ],
+        "js": [
+          "libraries/custom.js",
+          "libraries/moment-with-locales.js",
+          "amazon/standard_functions.js",
+          "amazon/amazon_thankyou_page.js"
         ],
         "run_at": "document_end"
       }
